@@ -5,13 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FloodReady – Registration</title>
 <style>
-*{box-sizing:border-box}body{font:18px/1.6 Arial,sans-serif;color:#172b36;background:#f3f7fa;margin:0}main{max-width:640px;margin:24px auto;padding:24px;background:white;border-radius:12px}h1,h2{line-height:1.25;color:#16455d}label{display:block;font-weight:bold;margin-top:16px}input:not([type=checkbox]),select{display:block;width:100%;padding:12px;font:inherit;border:2px solid #657985;border-radius:6px}input[type=checkbox]{width:22px;height:22px;vertical-align:middle}button{font:inherit;font-weight:bold;padding:12px 22px;border:2px solid #16455d;border-radius:8px;background:#16455d;color:white;cursor:pointer}button.secondary{background:white;color:#16455d}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #a54d00;outline-offset:3px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.notice{background:#eaf3f8;padding:12px;border-radius:6px}fieldset{border:0;padding:0;margin:0}legend{font-weight:bold;font-size:24px}a{color:#16455d}[hidden]{display:none!important}small{font-size:16px}@media(max-width:640px){main{margin:0;border-radius:0;padding:18px}}
+*{box-sizing:border-box}
+:root{font-size:18px;color-scheme:light}
+body{margin:0;background:#eaf2f7;color:#183044;font:1rem/1.6 system-ui,Arial,sans-serif}
+main{max-width:780px;margin:32px auto;padding:clamp(18px,4vw,40px);background:white;border:1px solid #c4d5df;border-radius:24px;box-shadow:0 12px 40px #123b5014}
+h1,h2,legend{line-height:1.25;color:#123e58}
+h1{margin:0;font-size:2rem}h2{font-size:1.5rem}
+label{display:block;font-weight:650;margin-top:16px}
+input:not([type=checkbox]),select{display:block;width:100%;padding:14px;font:inherit;border:2px solid #637c8b;border-radius:10px;background:white;color:inherit;min-height:52px}
+input[type=checkbox]{width:24px;height:24px;flex-shrink:0;accent-color:#075b80}
+label:has(input[type=checkbox]){display:flex;align-items:flex-start;gap:12px;padding:12px;border:1px solid #aabdc9;border-radius:10px;cursor:pointer}
+button{font:inherit;font-weight:700;padding:12px 22px;min-height:52px;border:2px solid #075b80;border-radius:10px;background:#075b80;color:white;cursor:pointer}
+button.secondary{background:white;color:#075b80}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,legend:focus{outline:3px solid #a54d00;outline-offset:4px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.notice{background:#eef5fa;padding:14px;border-left:4px solid #075b80;border-radius:8px}
+fieldset{border:0;padding:0;margin:0;min-width:0}legend{font-weight:750;font-size:1.4rem;margin-bottom:8px}
+a{color:#075b80}[hidden]{display:none!important}small{font-size:.9rem}
+.brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.mark{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;background:#075b80;color:white;font-size:28px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tools button{font-size:.9rem;padding:8px 14px}
+#stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0;list-style:none}
+#stages li{border-top:5px solid #b5c6d1;padding:8px 0;font-size:.85rem;overflow-wrap:anywhere}
+#stages li[aria-current=step]{border-color:#075b80;font-weight:750;color:#075b80}
+.support{background:#f3f7fa;border:1px solid #b5c6d1;border-radius:14px;padding:16px;margin:18px 0}
+.support legend{font-size:1.1rem}.support label{background:white}
+body.contrast{background:#000;color:#fff}body.contrast main,body.contrast .support,body.contrast .notice,body.contrast label,body.contrast input,body.contrast select{background:#000;color:#fff;border-color:#fff}body.contrast h1,body.contrast h2,body.contrast legend,body.contrast a,body.contrast #stages li{color:#fff}body.contrast button{background:#fff;color:#000;border-color:#fff}body.contrast #stages li[aria-current=step]{border-color:#ffdf00;color:#ffdf00}body.contrast :focus-visible{outline-color:#ffdf00}
+@media(max-width:640px){main{margin:0;border-radius:0;padding:18px}.actions button{flex:1 1 140px}}
 </style>
 </head>
 <body><main>
-<h1>FloodReady</h1><p>Helping Yeronga residents prepare for floods.</p>
+<header class="brand"><span class="mark" aria-hidden="true">≈</span><div><h1>FloodReady</h1><div>Yeronga · Flood preparedness</div></div></header><div class="tools" aria-label="Accessibility controls"><button type="button" class="secondary" id="larger" aria-pressed="false">Larger text</button><button type="button" class="secondary" id="contrast" aria-pressed="false">High contrast</button></div>
 <p class="notice">University prototype only. Use fictional details and a test password. Nothing is sent or saved.</p>
-<h2>Create your account</h2><p id="progress" aria-live="polite">Step 1 of 3</p>
+<h2>Create your account</h2><ol id="stages" aria-label="Registration stages"><li aria-current="step">1. Account</li><li>2. Contact</li><li>3. Support</li></ol><p id="progress" aria-live="polite">Step 1 of 3</p>
 <form id="registration" autocomplete="off">
 <fieldset class="step"><legend tabindex="-1">Account details</legend>
 <label for="name">Full name (required)</label><input id="name" required maxlength="120">
@@ -25,7 +50,16 @@
 <label>Notification preferences</label><label><input id="email-alert" type="checkbox" checked> Email alerts</label><label><input id="sms-alert" type="checkbox"> SMS alerts (requires a mobile number)</label>
 <div class="actions"><button type="button" class="secondary back">Back</button><button type="button" class="next">Continue</button></div></fieldset>
 <fieldset class="step" hidden disabled><legend tabindex="-1">Evacuation assistance</legend>
-<label for="mobility">Do you need mobility assistance? (optional)</label><select id="mobility"><option value="">Prefer not to say</option><option>Yes</option><option>No</option></select>
+<p>Tell us what support would help you during an evacuation. All questions on this step are optional. You do not need to disclose a diagnosis.</p>
+<fieldset class="support"><legend>Support preferences (select any)</legend>
+<label><input type="checkbox" name="support" value="mobility"> Mobility or wheelchair assistance</label>
+<label><input type="checkbox" name="support" value="vision"> Assistance with visual information</label>
+<label><input type="checkbox" name="support" value="hearing"> Visual or text-based alerts for hearing needs</label>
+<label><input type="checkbox" name="support" value="communication"> Communication or easy-read information</label>
+<label><input type="checkbox" name="support" value="transport"> Accessible evacuation transport</label>
+<label><input type="checkbox" name="support" value="carer"> Support from a carer or support person</label>
+</fieldset>
+<p class="notice">These preferences do not request or guarantee rescue or transport. In an emergency, follow official advice; call 000 if life is in danger.</p>
 <label for="contact">Emergency contact name (optional)</label><input id="contact" maxlength="120">
 <label for="contact-phone">Emergency contact phone (optional)</label><input id="contact-phone" type="tel" maxlength="30">
 <label><input id="consent" type="checkbox"> My emergency contact agrees to receive notifications.</label>
@@ -36,7 +70,9 @@
 </main><script>
 const form=document.getElementById('registration'),steps=[...document.querySelectorAll('.step')],progress=document.getElementById('progress');let current=0;
 const byId=id=>document.getElementById(id);
-function show(n){current=n;steps.forEach((s,i)=>{s.hidden=i!==n;s.disabled=i!==n});progress.textContent='Step '+(n+1)+' of 3';steps[n].querySelector('legend').focus();}
+byId('larger').addEventListener('click',()=>{const on=byId('larger').getAttribute('aria-pressed')!=='true';byId('larger').setAttribute('aria-pressed',String(on));document.documentElement.style.fontSize=on?'22px':'18px';});
+byId('contrast').addEventListener('click',()=>{const on=document.body.classList.toggle('contrast');byId('contrast').setAttribute('aria-pressed',String(on));});
+function show(n){current=n;steps.forEach((s,i)=>{s.hidden=i!==n;s.disabled=i!==n});progress.textContent='Step '+(n+1)+' of 3';document.querySelectorAll('#stages li').forEach((item,i)=>{if(i===n)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current')});steps[n].querySelector('legend').focus();}
 function valid(){byId('phone').setCustomValidity(byId('sms-alert').checked&&!byId('phone').value.trim()?'Enter a mobile number to receive SMS alerts.':'');const hasContact=!!(byId('contact').value.trim()||byId('contact-phone').value.trim()||byId('consent').checked);byId('contact').setCustomValidity(hasContact&&!byId('contact').value.trim()?'Enter your emergency contact name.':'');byId('contact-phone').setCustomValidity(hasContact&&!byId('contact-phone').value.trim()?'Enter your emergency contact phone number.':'');byId('consent').setCustomValidity(hasContact&&!byId('consent').checked?'Confirm your emergency contact agrees, or remove their details.':'');return form.reportValidity();}
 document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{if(valid())show(current+1)}));document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>show(current-1)));
 form.addEventListener('input',e=>e.target.setCustomValidity?.(''));form.addEventListener('submit',e=>{e.preventDefault();if(current!==2||!valid())return;form.reset();form.hidden=true;progress.hidden=true;byId('finished').hidden=false;byId('finished').querySelector('h2').focus();});byId('restart').addEventListener('click',()=>{byId('finished').hidden=true;form.hidden=false;progress.hidden=false;show(0)});
