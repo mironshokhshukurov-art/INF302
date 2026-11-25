@@ -31,9 +31,17 @@ a{color:#075b80}[hidden]{display:none!important}small{font-size:.9rem}
 .support legend{font-size:1.1rem}.support label{background:white}
 body.contrast{background:#000;color:#fff}body.contrast main,body.contrast .support,body.contrast .notice,body.contrast label,body.contrast input,body.contrast select{background:#000;color:#fff;border-color:#fff}body.contrast h1,body.contrast h2,body.contrast legend,body.contrast a,body.contrast #stages li{color:#fff}body.contrast button{background:#fff;color:#000;border-color:#fff}body.contrast #stages li[aria-current=step]{border-color:#ffdf00;color:#ffdf00}body.contrast :focus-visible{outline-color:#ffdf00}
 @media(max-width:640px){main{margin:0;border-radius:0;padding:18px}.actions button{flex:1 1 140px}}
+ 
+.shell{display:grid;grid-template-columns:minmax(260px, .8fr) minmax(0,1.35fr);max-width:1160px;margin:32px auto;border-radius:24px;overflow:hidden;box-shadow:0 20px 65px #123b5020;background:white}
+.shell main{width:100%;max-width:none;margin:0;border:0;border-radius:0;box-shadow:none;padding:clamp(20px,3vw,40px)}
+.intro{background:linear-gradient(155deg,#092f49,#075b80);color:white;padding:40px 32px;display:flex;flex-direction:column;gap:12px}
+.intro h2{color:white;font-size:2.2rem;margin:12px 0}.intro p{margin:0 0 12px}.eyebrow{font-size:.75rem;letter-spacing:.12em;font-weight:700}.wave{font-size:3rem;line-height:1;margin-top:18px}.feature{border-top:1px solid #ffffff70;padding-top:16px}.feature p{font-size:.9rem}.intro small{margin-top:auto;padding-top:24px}
+.brand h1{font-size:1.5rem}.brand .mark{width:42px;height:42px;border-radius:12px}.tools{margin:12px 0}.notice{font-size:.9rem;margin:12px 0}#stages{margin:12px 0}#progress{margin:8px 0}main h2{margin:18px 0 8px}label{margin-top:12px}.actions{margin-top:20px}
+body.contrast .shell,body.contrast .intro{background:#000;color:white;border:1px solid white}
+@media(max-width:850px){.shell{display:block;margin:0;border-radius:0}.intro{padding:20px}.intro h2{font-size:1.5rem;margin:0}.intro .feature,.intro .wave{display:none}.intro small{padding:0}.shell main{padding:20px}}
 </style>
 </head>
-<body><main>
+<body><div class="shell"><aside class="intro"><div class="eyebrow">FLOODREADY / YERONGA</div><div class="wave" aria-hidden="true">≈</div><h2>Be prepared.<br>Stay informed.</h2><p>A more accessible way to prepare for flooding in your community.</p><div class="feature"><strong>01 · Local information</strong><p>Prepare using location-specific information.</p></div><div class="feature"><strong>02 · Your preferences</strong><p>Choose alerts and support that suit your needs.</p></div><div class="feature"><strong>03 · Inclusive by design</strong><p>Adjust text size and contrast at any stage.</p></div><small>University project · Not an emergency service</small></aside><main>
 <header class="brand"><span class="mark" aria-hidden="true">≈</span><div><h1>FloodReady</h1><div>Yeronga · Flood preparedness</div></div></header><div class="tools" aria-label="Accessibility controls"><button type="button" class="secondary" id="larger" aria-pressed="false">Larger text</button><button type="button" class="secondary" id="contrast" aria-pressed="false">High contrast</button></div>
 <p class="notice">University prototype only. Use fictional details and a test password. Nothing is sent or saved.</p>
 <h2>Create your account</h2><ol id="stages" aria-label="Registration stages"><li aria-current="step">1. Account</li><li>2. Contact</li><li>3. Support</li></ol><p id="progress" aria-live="polite">Step 1 of 3</p>
@@ -67,7 +75,7 @@ body.contrast{background:#000;color:#fff}body.contrast main,body.contrast .suppo
 </form>
 <section id="finished" hidden><h2 tabindex="-1">Registration preview complete</h2><p>No account has been created and no email or SMS has been sent. Database and authentication are not connected yet.</p><button id="restart">Start again</button></section>
 <p><a href="index%20(1).html">Return to FloodReady home</a></p>
-</main><script>
+</main></div><script>
 const form=document.getElementById('registration'),steps=[...document.querySelectorAll('.step')],progress=document.getElementById('progress');let current=0;
 const byId=id=>document.getElementById(id);
 byId('larger').addEventListener('click',()=>{const on=byId('larger').getAttribute('aria-pressed')!=='true';byId('larger').setAttribute('aria-pressed',String(on));document.documentElement.style.fontSize=on?'22px':'18px';});
