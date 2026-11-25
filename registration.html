@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FloodReady – Registration</title>
+<style>
+*{box-sizing:border-box}body{font:18px/1.6 Arial,sans-serif;color:#172b36;background:#f3f7fa;margin:0}main{max-width:640px;margin:24px auto;padding:24px;background:white;border-radius:12px}h1,h2{line-height:1.25;color:#16455d}label{display:block;font-weight:bold;margin-top:16px}input:not([type=checkbox]),select{display:block;width:100%;padding:12px;font:inherit;border:2px solid #657985;border-radius:6px}input[type=checkbox]{width:22px;height:22px;vertical-align:middle}button{font:inherit;font-weight:bold;padding:12px 22px;border:2px solid #16455d;border-radius:8px;background:#16455d;color:white;cursor:pointer}button.secondary{background:white;color:#16455d}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #a54d00;outline-offset:3px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.notice{background:#eaf3f8;padding:12px;border-radius:6px}fieldset{border:0;padding:0;margin:0}legend{font-weight:bold;font-size:24px}a{color:#16455d}[hidden]{display:none!important}small{font-size:16px}@media(max-width:640px){main{margin:0;border-radius:0;padding:18px}}
+</style>
+</head>
+<body><main>
+<h1>FloodReady</h1><p>Helping Yeronga residents prepare for floods.</p>
+<p class="notice">University prototype only. Use fictional details and a test password. Nothing is sent or saved.</p>
+<h2>Create your account</h2><p id="progress" aria-live="polite">Step 1 of 3</p>
+<form id="registration" autocomplete="off">
+<fieldset class="step"><legend tabindex="-1">Account details</legend>
+<label for="name">Full name (required)</label><input id="name" required maxlength="120">
+<label for="email">Email address (required)</label><input id="email" type="email" required>
+<label for="password">Password (required)</label><input id="password" type="password" minlength="8" required autocomplete="new-password" aria-describedby="password-help"><small id="password-help">Use at least 8 characters. Do not use your real password in this demo.</small>
+<label><input type="checkbox" required> I understand that this prototype does not store my details.</label>
+<div class="actions"><button type="button" class="next">Continue</button></div></fieldset>
+<fieldset class="step" hidden disabled><legend tabindex="-1">Contact details</legend>
+<label for="address">Residential address (required)</label><input id="address" required maxlength="250">
+<label for="phone">Mobile phone (optional)</label><input id="phone" type="tel" maxlength="30">
+<label>Notification preferences</label><label><input id="email-alert" type="checkbox" checked> Email alerts</label><label><input id="sms-alert" type="checkbox"> SMS alerts (requires a mobile number)</label>
+<div class="actions"><button type="button" class="secondary back">Back</button><button type="button" class="next">Continue</button></div></fieldset>
+<fieldset class="step" hidden disabled><legend tabindex="-1">Evacuation assistance</legend>
+<label for="mobility">Do you need mobility assistance? (optional)</label><select id="mobility"><option value="">Prefer not to say</option><option>Yes</option><option>No</option></select>
+<label for="contact">Emergency contact name (optional)</label><input id="contact" maxlength="120">
+<label for="contact-phone">Emergency contact phone (optional)</label><input id="contact-phone" type="tel" maxlength="30">
+<label><input id="consent" type="checkbox"> My emergency contact agrees to receive notifications.</label>
+<div class="actions"><button type="button" class="secondary back">Back</button><button type="submit">Finish demo</button></div></fieldset>
+</form>
+<section id="finished" hidden><h2 tabindex="-1">Registration preview complete</h2><p>No account has been created and no email or SMS has been sent. Database and authentication are not connected yet.</p><button id="restart">Start again</button></section>
+<p><a href="index%20(1).html">Return to FloodReady home</a></p>
+</main><script>
+const form=document.getElementById('registration'),steps=[...document.querySelectorAll('.step')],progress=document.getElementById('progress');let current=0;
+const byId=id=>document.getElementById(id);
+function show(n){current=n;steps.forEach((s,i)=>{s.hidden=i!==n;s.disabled=i!==n});progress.textContent='Step '+(n+1)+' of 3';steps[n].querySelector('legend').focus();}
+function valid(){byId('phone').setCustomValidity(byId('sms-alert').checked&&!byId('phone').value.trim()?'Enter a mobile number to receive SMS alerts.':'');const hasContact=!!(byId('contact').value.trim()||byId('contact-phone').value.trim()||byId('consent').checked);byId('contact').setCustomValidity(hasContact&&!byId('contact').value.trim()?'Enter your emergency contact name.':'');byId('contact-phone').setCustomValidity(hasContact&&!byId('contact-phone').value.trim()?'Enter your emergency contact phone number.':'');byId('consent').setCustomValidity(hasContact&&!byId('consent').checked?'Confirm your emergency contact agrees, or remove their details.':'');return form.reportValidity();}
+document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{if(valid())show(current+1)}));document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>show(current-1)));
+form.addEventListener('input',e=>e.target.setCustomValidity?.(''));form.addEventListener('submit',e=>{e.preventDefault();if(current!==2||!valid())return;form.reset();form.hidden=true;progress.hidden=true;byId('finished').hidden=false;byId('finished').querySelector('h2').focus();});byId('restart').addEventListener('click',()=>{byId('finished').hidden=true;form.hidden=false;progress.hidden=false;show(0)});
+</script></body></html>
