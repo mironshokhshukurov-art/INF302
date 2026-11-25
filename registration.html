@@ -39,17 +39,52 @@ body.contrast{background:#000;color:#fff}body.contrast main,body.contrast .suppo
 .brand h1{font-size:1.5rem}.brand .mark{width:42px;height:42px;border-radius:12px}.tools{margin:12px 0}.notice{font-size:.9rem;margin:12px 0}#stages{margin:12px 0}#progress{margin:8px 0}main h2{margin:18px 0 8px}label{margin-top:12px}.actions{margin-top:20px}
 body.contrast .shell,body.contrast .intro{background:#000;color:white;border:1px solid white}
 @media(max-width:850px){.shell{display:block;margin:0;border-radius:0}.intro{padding:20px}.intro h2{font-size:1.5rem;margin:0}.intro .feature,.intro .wave{display:none}.intro small{padding:0}.shell main{padding:20px}}
+
+body{background:#edf4f5}
+.shell{max-width:1240px;margin:24px auto;grid-template-columns:minmax(260px,.75fr) minmax(0,1.45fr);border:1px solid #d0dfe4}
+.intro{position:relative;isolation:isolate;background:linear-gradient(150deg,#082c40 5%,#08556a 75%,#08766f);overflow:hidden}
+.intro:before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-radial-gradient(ellipse at 100% 15%,transparent 0 22px,#ffffff12 23px 24px,transparent 25px 43px);pointer-events:none}
+.intro .wave{width:64px;height:64px;border:1px solid #ffffff70;border-radius:20px;display:grid;place-items:center;background:#ffffff12}
+.intro .feature{border:1px solid #ffffff45;background:#ffffff0d;padding:14px;border-radius:14px}
+.intro .feature p{margin:4px 0 0}
+.brand{border-bottom:1px solid #d7e2e5;padding-bottom:14px}
+.tools{align-items:center;background:#f0f6f6;border-radius:12px;padding:8px;gap:8px}
+.tools button{min-height:44px;background:white;border:1px solid #56747c}
+#stages li{border:1px solid #a6bbc1;border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:3px}
+#stages li[aria-current=step]{background:#e6f4f1;border:2px solid #08665f;color:#07564e}
+#stages li.done{background:#f0f7f5;color:#07564e}
+#stages .number{font-size:.8rem;font-weight:800}
+#progress{font-size:.85rem;color:#455d68}
+input:not([type=checkbox]),select{border:1.5px solid #657e88;background:#fbfdfd;border-radius:12px}
+input:not([type=checkbox]):focus{background:white}
+button:not(.secondary){background:#00665f;border-color:#00665f}
+button:hover{filter:brightness(.93)}
+label:has(input[type=checkbox]:checked){border:2px solid #08766f;background:#e6f4f1}
+.support{background:transparent;padding:0;border:0}
+.support label{min-height:68px;align-items:center}
+.password-row{display:flex;gap:8px;align-items:stretch}.password-row input{min-width:0;flex:1}.password-row button{flex-shrink:0}
+#password-state{display:block;color:#455d68;margin-top:6px}
+.actions{border-top:1px solid #d7e2e5;padding-top:18px}
+.actions .next,.actions button[type=submit]{min-width:160px}
+.step:not([hidden]){animation:appear .18s ease-out}
+@keyframes appear{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.step:not([hidden]){animation:none}}
+body.contrast .tools,body.contrast #stages li,body.contrast label:has(input[type=checkbox]:checked){background:#000;color:white;border-color:white}
+body.contrast #stages li[aria-current=step]{border-color:#ffdf00;color:#ffdf00}
+body.contrast #progress,body.contrast #password-state{color:white}
+body.contrast button:not(.secondary),body.contrast .tools button{background:white;color:black;border-color:white}
+@media(max-width:850px){.shell{margin:0}.intro .wave,.intro .feature{display:none}.intro h2{font-size:1.35rem}.tools{padding:6px}#stages li{padding:6px}.password-row{flex-wrap:wrap}.password-row input{flex-basis:65%}}
 </style>
 </head>
 <body><div class="shell"><aside class="intro"><div class="eyebrow">FLOODREADY / YERONGA</div><div class="wave" aria-hidden="true">≈</div><h2>Be prepared.<br>Stay informed.</h2><p>A more accessible way to prepare for flooding in your community.</p><div class="feature"><strong>01 · Local information</strong><p>Prepare using location-specific information.</p></div><div class="feature"><strong>02 · Your preferences</strong><p>Choose alerts and support that suit your needs.</p></div><div class="feature"><strong>03 · Inclusive by design</strong><p>Adjust text size and contrast at any stage.</p></div><small>University project · Not an emergency service</small></aside><main>
 <header class="brand"><span class="mark" aria-hidden="true">≈</span><div><h1>FloodReady</h1><div>Yeronga · Flood preparedness</div></div></header><div class="tools" aria-label="Accessibility controls"><button type="button" class="secondary" id="larger" aria-pressed="false">Larger text</button><button type="button" class="secondary" id="contrast" aria-pressed="false">High contrast</button></div>
 <p class="notice">University prototype only. Use fictional details and a test password. Nothing is sent or saved.</p>
-<h2>Create your account</h2><ol id="stages" aria-label="Registration stages"><li aria-current="step">1. Account</li><li>2. Contact</li><li>3. Support</li></ol><p id="progress" aria-live="polite">Step 1 of 3</p>
+<h2>Create your account</h2><ol id="stages" aria-label="Registration stages"><li aria-current="step"><span class="number">01</span>Account</li><li><span class="number">02</span>Contact</li><li><span class="number">03</span>Support</li></ol><p id="progress" aria-live="polite">Step 1 of 3</p>
 <form id="registration" autocomplete="off">
 <fieldset class="step"><legend tabindex="-1">Account details</legend>
 <label for="name">Full name (required)</label><input id="name" required maxlength="120">
 <label for="email">Email address (required)</label><input id="email" type="email" required>
-<label for="password">Password (required)</label><input id="password" type="password" minlength="8" required autocomplete="new-password" aria-describedby="password-help"><small id="password-help">Use at least 8 characters. Do not use your real password in this demo.</small>
+<label for="password">Password (required)</label><div class="password-row"><input id="password" type="password" minlength="8" required autocomplete="new-password" aria-describedby="password-help password-state"><button type="button" class="secondary" id="toggle-password" aria-controls="password" aria-pressed="false">Show</button></div><small id="password-help">Use at least 8 characters. Do not use your real password in this demo.</small><small id="password-state" aria-live="polite">Password needs at least 8 characters.</small>
 <label><input type="checkbox" required> I understand that this prototype does not store my details.</label>
 <div class="actions"><button type="button" class="next">Continue</button></div></fieldset>
 <fieldset class="step" hidden disabled><legend tabindex="-1">Contact details</legend>
@@ -80,8 +115,10 @@ const form=document.getElementById('registration'),steps=[...document.querySelec
 const byId=id=>document.getElementById(id);
 byId('larger').addEventListener('click',()=>{const on=byId('larger').getAttribute('aria-pressed')!=='true';byId('larger').setAttribute('aria-pressed',String(on));document.documentElement.style.fontSize=on?'22px':'18px';});
 byId('contrast').addEventListener('click',()=>{const on=document.body.classList.toggle('contrast');byId('contrast').setAttribute('aria-pressed',String(on));});
-function show(n){current=n;steps.forEach((s,i)=>{s.hidden=i!==n;s.disabled=i!==n});progress.textContent='Step '+(n+1)+' of 3';document.querySelectorAll('#stages li').forEach((item,i)=>{if(i===n)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current')});steps[n].querySelector('legend').focus();}
+byId('toggle-password').addEventListener('click',()=>{const b=byId('toggle-password'),p=byId('password'),on=p.type==='password';p.type=on?'text':'password';b.textContent=on?'Hide':'Show';b.setAttribute('aria-pressed',String(on));});
+byId('password').addEventListener('input',()=>{byId('password-state').textContent=byId('password').value.length>=8?'Minimum length met.':'Password needs at least 8 characters.';});
+function show(n){current=n;steps.forEach((s,i)=>{s.hidden=i!==n;s.disabled=i!==n});progress.textContent='Step '+(n+1)+' of 3';document.querySelectorAll('#stages li').forEach((item,i)=>{item.classList.toggle('done',i<n);if(i===n)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current')});steps[n].querySelector('legend').focus();}
 function valid(){byId('phone').setCustomValidity(byId('sms-alert').checked&&!byId('phone').value.trim()?'Enter a mobile number to receive SMS alerts.':'');const hasContact=!!(byId('contact').value.trim()||byId('contact-phone').value.trim()||byId('consent').checked);byId('contact').setCustomValidity(hasContact&&!byId('contact').value.trim()?'Enter your emergency contact name.':'');byId('contact-phone').setCustomValidity(hasContact&&!byId('contact-phone').value.trim()?'Enter your emergency contact phone number.':'');byId('consent').setCustomValidity(hasContact&&!byId('consent').checked?'Confirm your emergency contact agrees, or remove their details.':'');return form.reportValidity();}
 document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{if(valid())show(current+1)}));document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>show(current-1)));
-form.addEventListener('input',e=>e.target.setCustomValidity?.(''));form.addEventListener('submit',e=>{e.preventDefault();if(current!==2||!valid())return;form.reset();form.hidden=true;progress.hidden=true;byId('finished').hidden=false;byId('finished').querySelector('h2').focus();});byId('restart').addEventListener('click',()=>{byId('finished').hidden=true;form.hidden=false;progress.hidden=false;show(0)});
+form.addEventListener('input',e=>e.target.setCustomValidity?.(''));form.addEventListener('submit',e=>{e.preventDefault();if(current!==2||!valid())return;form.reset();byId('password').type='password';byId('toggle-password').textContent='Show';byId('toggle-password').setAttribute('aria-pressed','false');byId('password-state').textContent='Password needs at least 8 characters.';form.hidden=true;progress.hidden=true;byId('finished').hidden=false;byId('finished').querySelector('h2').focus();});byId('restart').addEventListener('click',()=>{byId('finished').hidden=true;form.hidden=false;progress.hidden=false;show(0)});
 </script></body></html>
