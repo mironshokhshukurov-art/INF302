@@ -102,10 +102,36 @@ body.contrast .support-grid label,body.contrast details.help{background:black;co
 body.contrast #stages .number{background:white;color:black}
 @media(max-width:850px){.shell{display:block;margin:0;border-radius:0}.intro,.shell main{border-radius:0;padding:20px}.intro .art{display:none}.intro h2{font-size:1.5rem}.intro .feature{display:none}}
 @media(max-width:560px){.support-grid{grid-template-columns:1fr}.actions .next,.actions button[type=submit]{min-width:0}}
+
+body{background:#e4eae5}
+.shell{max-width:1440px;margin:0 auto;min-height:100vh;border:0;border-radius:0;grid-template-columns:minmax(300px,1fr) minmax(0,1fr);box-shadow:none}
+.intro{position:sticky;top:0;align-self:start;min-height:100vh;border-radius:0;padding:clamp(24px,5vw,76px);background:#102f30;gap:24px}
+.intro h2{font-size:clamp(2rem,4.5vw,4rem);letter-spacing:-.065em;line-height:1.04}
+.intro .art{max-height:220px;width:100%;margin:12px 0}
+.intro .feature{padding:8px 0}.intro .feature p{font-size:.85rem}
+.shell main{border-radius:0;padding:clamp(22px,5vw,76px);background:#fffefa}
+.brand{border:0}.brand .mark{background:#123f3b}
+.tools{border-bottom:1px solid #d5ded7;padding-bottom:16px}
+#stages li{background:transparent;border-radius:0;border-bottom:3px solid #ccd9d2;padding:12px 4px}
+#stages li[aria-current=step]{background:transparent;border:0;border-bottom:3px solid #08766f}
+#stages li.done{background:transparent;border-bottom-color:#08766f}
+main h2{font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.1}
+.step legend{font-size:1.2rem}
+.actions .next,.actions button[type=submit]{border-radius:32px;min-height:58px}
+.scene{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#b1e8d4}
+.scene-copy{min-height:3em}
+.art g{animation:drift 7s ease-in-out infinite alternate;transform-origin:center}
+@keyframes drift{to{transform:translateY(-7px)}}
+.step:not([hidden]){animation:reveal .35s ease-out}
+@keyframes reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+body.still *,body.still *:before{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){.art g,.step:not([hidden]){animation:none}}
+body.contrast .scene{color:white}body.contrast .shell main{background:black}
+@media(max-width:850px){.shell{display:block}.intro{position:relative;min-height:0;padding:24px}.intro h2{font-size:2rem}.intro .art,.intro .feature{display:none}.shell main{padding:22px}.scene-copy{min-height:0}}
 </style>
 </head>
-<body><div class="shell"><aside class="intro"><div class="eyebrow">FLOODREADY / YERONGA</div><svg class="art" viewBox="0 0 320 150" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2"><path opacity=".4" d="M0 112 Q80 65 160 112 T320 112 M0 126 Q80 79 160 126 T320 126 M0 140 Q80 93 160 140 T320 140"/><path d="M88 91V53L135 18 182 53V91M78 60L135 17 192 60M121 90V62H149V90M98 55H112V70H98Z M159 55H173V70H159Z"/><circle cx="245" cy="34" r="19" opacity=".65"/><path d="M218 91V65L245 45 272 65V91" opacity=".7"/></g></svg><h2>Be prepared.<br>Stay informed.</h2><p>A more accessible way to prepare for flooding in your community.</p><div class="feature"><strong>01 · Local information</strong><p>Prepare using location-specific information.</p></div><div class="feature"><strong>02 · Your preferences</strong><p>Choose alerts and support that suit your needs.</p></div><div class="feature"><strong>03 · Inclusive by design</strong><p>Adjust text size and contrast at any stage.</p></div><small>University project · Not an emergency service</small></aside><main>
-<header class="brand"><span class="mark" aria-hidden="true">≈</span><div><h1>FloodReady</h1><div>Yeronga · Flood preparedness</div></div></header><div class="tools" aria-label="Accessibility controls"><button type="button" class="secondary" id="larger" aria-pressed="false">Larger text</button><button type="button" class="secondary" id="contrast" aria-pressed="false">High contrast</button></div>
+<body><div class="shell"><aside class="intro"><div class="eyebrow">FLOODREADY / YERONGA</div><svg class="art" viewBox="0 0 320 150" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2"><path opacity=".4" d="M0 112 Q80 65 160 112 T320 112 M0 126 Q80 79 160 126 T320 126 M0 140 Q80 93 160 140 T320 140"/><path d="M88 91V53L135 18 182 53V91M78 60L135 17 192 60M121 90V62H149V90M98 55H112V70H98Z M159 55H173V70H159Z"/><circle cx="245" cy="34" r="19" opacity=".65"/><path d="M218 91V65L245 45 272 65V91" opacity=".7"/></g></svg><div class="scene" id="scene-index">01 / Your account</div><h2 id="scene-title">Be prepared.<br>Stay informed.</h2><p class="scene-copy" id="scene-copy">A more accessible way to prepare for flooding in your community.</p><div class="feature"><strong>01 · Local information</strong><p>Prepare using location-specific information.</p></div><div class="feature"><strong>02 · Your preferences</strong><p>Choose alerts and support that suit your needs.</p></div><div class="feature"><strong>03 · Inclusive by design</strong><p>Adjust text size and contrast at any stage.</p></div><small>University project · Not an emergency service</small></aside><main>
+<header class="brand"><span class="mark" aria-hidden="true">≈</span><div><h1>FloodReady</h1><div>Yeronga · Flood preparedness</div></div></header><div class="tools" aria-label="Accessibility controls"><button type="button" class="secondary" id="larger" aria-pressed="false">Larger text</button><button type="button" class="secondary" id="contrast" aria-pressed="false">High contrast</button><button type="button" class="secondary" id="motion" aria-pressed="false">Reduce motion</button></div>
 <p class="notice">University prototype only. Use fictional details and a test password. Nothing is sent or saved.</p>
 <h2>Create your account</h2><ol id="stages" aria-label="Registration stages"><li aria-current="step"><span class="number">01</span>Account</li><li><span class="number">02</span>Contact</li><li><span class="number">03</span>Support</li></ol><p id="progress" aria-live="polite">Step 1 of 3</p>
 <form id="registration" autocomplete="off">
@@ -145,7 +171,9 @@ byId('larger').addEventListener('click',()=>{const on=byId('larger').getAttribut
 byId('contrast').addEventListener('click',()=>{const on=document.body.classList.toggle('contrast');byId('contrast').setAttribute('aria-pressed',String(on));});
 byId('toggle-password').addEventListener('click',()=>{const b=byId('toggle-password'),p=byId('password'),on=p.type==='password';p.type=on?'text':'password';b.textContent=on?'Hide':'Show';b.setAttribute('aria-pressed',String(on));});
 byId('password').addEventListener('input',()=>{byId('password-state').textContent=byId('password').value.length>=8?'Minimum length met.':'Password needs at least 8 characters.';});
-function show(n){current=n;steps.forEach((s,i)=>{s.hidden=i!==n;s.disabled=i!==n});progress.textContent='Step '+(n+1)+' of 3';document.querySelectorAll('#stages li').forEach((item,i)=>{item.classList.toggle('done',i<n);item.querySelector('.number').textContent=i<n?'✓':String(i+1).padStart(2,'0');if(i===n)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current')});steps[n].querySelector('legend').focus();}
+byId('motion').addEventListener('click',()=>{const on=document.body.classList.toggle('still');byId('motion').setAttribute('aria-pressed',String(on));});
+const scenes=[['01 / Your account','Be prepared. Stay informed.','A more accessible way to prepare for flooding in your community.'],['02 / Your location','Closer to home.','Choose how you would like to receive local information.'],['03 / Your support','Prepared together.','Tell us what would make information and evacuation guidance more accessible.']];
+function show(n){const scene=scenes[n];byId('scene-index').textContent=scene[0];byId('scene-title').textContent=scene[1];byId('scene-copy').textContent=scene[2];current=n;steps.forEach((s,i)=>{s.hidden=i!==n;s.disabled=i!==n});progress.textContent='Step '+(n+1)+' of 3';document.querySelectorAll('#stages li').forEach((item,i)=>{item.classList.toggle('done',i<n);item.querySelector('.number').textContent=i<n?'✓':String(i+1).padStart(2,'0');if(i===n)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current')});steps[n].querySelector('legend').focus();}
 function valid(){byId('phone').setCustomValidity(byId('sms-alert').checked&&!byId('phone').value.trim()?'Enter a mobile number to receive SMS alerts.':'');const hasContact=!!(byId('contact').value.trim()||byId('contact-phone').value.trim()||byId('consent').checked);byId('contact').setCustomValidity(hasContact&&!byId('contact').value.trim()?'Enter your emergency contact name.':'');byId('contact-phone').setCustomValidity(hasContact&&!byId('contact-phone').value.trim()?'Enter your emergency contact phone number.':'');byId('consent').setCustomValidity(hasContact&&!byId('consent').checked?'Confirm your emergency contact agrees, or remove their details.':'');return form.reportValidity();}
 document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{if(valid())show(current+1)}));document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>show(current-1)));
 form.addEventListener('input',e=>e.target.setCustomValidity?.(''));form.addEventListener('submit',e=>{e.preventDefault();if(current!==2||!valid())return;form.reset();byId('password').type='password';byId('toggle-password').textContent='Show';byId('toggle-password').setAttribute('aria-pressed','false');byId('password-state').textContent='Password needs at least 8 characters.';form.hidden=true;progress.hidden=true;byId('finished').hidden=false;byId('finished').querySelector('h2').focus();});byId('restart').addEventListener('click',()=>{byId('finished').hidden=true;form.hidden=false;progress.hidden=false;show(0)});
